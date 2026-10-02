@@ -17,12 +17,11 @@
   alleSkalieren();
 
   // Ausprobieren: Türchen n des Demo-Kalenders im Handy zeigen
-  function demo(n) {
-    const url = BASIS + 'demo/#t=' + n;
+  function demo(n, url = BASIS + 'demo/#t=' + n, tipp = 'Direkt im Handy lösen – die Antwort steht im Text.') {
     if (window.innerWidth < 600) { window.open(url, '_blank'); return; }
     const hg = document.createElement('div');
     hg.className = 'demo-hintergrund';
-    hg.innerHTML = `<div class="telefon"><button class="demo-zu" aria-label="Schliessen">×</button><div class="rahmen"><div class="glas"><iframe title="Rätsel ausprobieren" src="${url}" allow="camera"></iframe></div></div><p class="tipp">Direkt im Handy lösen – die Antwort steht im Text.</p></div>`;
+    hg.innerHTML = `<div class="telefon"><button class="demo-zu" aria-label="Schliessen">×</button><div class="rahmen"><div class="glas"><iframe title="Rätsel ausprobieren" src="${url}" allow="camera"></iframe></div></div><p class="tipp">${tipp}</p></div>`;
     const zu = () => { hg.remove(); document.body.classList.remove('demo-offen'); document.removeEventListener('keydown', taste); };
     const taste = (e) => { if (e.key === 'Escape') zu(); };
     hg.addEventListener('click', (e) => { if (e.target === hg) zu(); });
@@ -34,5 +33,7 @@
   document.addEventListener('click', (e) => {
     const b = e.target.closest('.probe[data-tuer]');
     if (b) { e.preventDefault(); demo(b.dataset.tuer); }
+    const v = e.target.closest('.probe-vorlage[data-vorlage]');
+    if (v) { e.preventDefault(); demo(null, BASIS + 'vorlagen/' + v.dataset.vorlage + '/', 'Alle Türchen offen. Wo TODO steht, trägst du später deins ein.'); }
   });
 })();
