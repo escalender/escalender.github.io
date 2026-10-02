@@ -55,6 +55,13 @@ section + section { border-top: 1px solid var(--linie); }
 .telefon .glas { position: absolute; inset: 12px; border-radius: 34px; overflow: hidden; }
 .telefon .tipp { text-align: center; color: var(--leise); font-size: 14px; margin-top: 12px; }
 
+/* QR zum Beispiel – vom Laptop aufs Handy */
+.qr-beispiel { display: flex; align-items: center; gap: 14px; margin-top: 26px; max-width: 420px; }
+.qr-beispiel .qr { width: 84px; height: 84px; flex: none; background: var(--creme); border-radius: 10px; padding: 6px; }
+.qr-beispiel .qr svg { display: block; width: 100%; height: 100%; }
+.qr-beispiel p { color: var(--leise); font-size: 14px; margin: 0; }
+@media (max-width: 560px) { .qr-beispiel { display: none; } }
+
 /* Drei Schritte – eine echte Reihenfolge, darum Nummern */
 .schritte { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 28px; }
 .schritt { display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: start; }
@@ -129,3 +136,22 @@ body.demo-offen { overflow: hidden; }
   .hero { padding-top: 16px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .knopf { transition: none; } }
+
+/* Vorlagen – eine Karte pro Vorlage, mit Durchspielen und Öffnen */
+.vorlagen { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 18px; margin: 24px 0 64px; }
+.vorlage { display: flex; flex-direction: column; gap: 10px; padding: 24px 22px; border-radius: 20px; background: var(--nacht2); box-shadow: inset 0 0 0 1.5px var(--linie); }
+.vorlage .fuer { color: var(--gold); font-weight: 700; font-size: 14px; }
+.vorlage h2 { font-size: 26px; margin: 0; }
+.vorlage p { color: var(--leise); font-size: 15.5px; margin: 0; }
+.vorlage .fakten { display: flex; gap: 8px; flex-wrap: wrap; }
+.vorlage .knoepfe { display: flex; gap: 10px; flex-wrap: wrap; margin-top: auto; padding-top: 10px; }
+.vorlage .knopf { padding: 10px 18px; font-size: 15px; }
+
+/* Hilfe */
+.hilfe p { color: var(--leise); max-width: 72ch; }
+.hilfe p b { color: var(--creme); }
+.hilfe code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .92em; background: rgba(255,255,255,.08); border-radius: 6px; padding: 1px 6px; color: var(--creme); }
+.weg-liste { margin: 16px 0; padding-left: 0; list-style: none; counter-reset: schritt; max-width: 72ch; }
+.weg-liste li { position: relative; padding-left: 44px; margin-bottom: 12px; color: var(--leise); }
+.weg-liste li b { color: var(--creme); }
+.weg-liste li::before { counter-increment: schritt; content: counter(schritt); position: absolute; left: 0; top: -2px; font-family: var(--titel); font-size: 24px; color: var(--gold); font-variation-settings: 'WONK' 1; }
