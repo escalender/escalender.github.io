@@ -52,7 +52,7 @@ section + section { border-top: 1px solid var(--linie); }
 .telefon { justify-self: center; position: relative; width: 300px; max-width: 100%; }
 .telefon .rahmen { position: relative; width: 100%; aspect-ratio: 390 / 844; border-radius: 44px; background: #0a0f1f; padding: 12px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.7), inset 0 0 0 2px rgba(255,255,255,.12); }
 .telefon .rahmen::before { content: ''; position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 32%; aspect-ratio: 110 / 26; background: #0a0f1f; border-radius: 0 0 18px 18px; z-index: 2; }
-.telefon iframe { width: 390px; height: 844px; border: 0; border-radius: 34px; background: var(--nacht); transform-origin: top left; }
+.telefon iframe { width: 390px; height: 844px; border: 0; display: block; background: transparent; transform-origin: top left; }
 .telefon .glas { position: absolute; inset: 12px; border-radius: 34px; overflow: hidden; background: #0b1428; }
 .telefon .tipp { text-align: center; color: var(--leise); font-size: 14px; margin-top: 12px; }
 

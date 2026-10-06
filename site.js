@@ -8,10 +8,10 @@
     const f = telefon.querySelector('iframe');
     if (!glas || !f) return;
     // Oben bleibt Platz für die Statusleiste (Uhrzeit, Akku) wie auf einem echten iPhone – sonst läuft der Titel in die Kerbe
+    // Das Glas füllt den Rahmen ganz (inset im CSS); das iframe wird so hoch, dass es bis zum unteren Rand reicht
     const s = glas.clientWidth / 390, BALKEN = 47;
-    f.style.height = (844 - BALKEN) + 'px';
+    f.style.height = Math.ceil(glas.clientHeight / s - BALKEN) + 'px';
     f.style.transform = `translateY(${BALKEN * s}px) scale(${s})`;
-    glas.style.height = Math.round(844 * s) + 'px';
     // Statusleiste in der Farbe des Kalenders (jedes Design hat seinen eigenen Hintergrund)
     if (!f.dataset.farbe) { f.dataset.farbe = '1'; f.addEventListener('load', () => { try { glas.style.background = getComputedStyle(f.contentDocument.body).backgroundColor; } catch (e) {} }); }
   }
