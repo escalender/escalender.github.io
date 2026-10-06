@@ -109,7 +109,7 @@ section + section { border-top: 1px solid var(--linie); }
 .fach { padding: 48px 0; }
 .fach + .fach { border-top: 1px solid var(--linie); }
 .katalog-kopf { padding-top: 36px; padding-bottom: 8px; }   /* nur oben/unten – seitlich kommt von .innen */
-.katalog-kopf p { color: var(--leise); font-size: 19px; max-width: 54ch; }
+.katalog-kopf p { color: var(--leise); font-size: 19px; max-width: 70ch; }
 .sprung { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
 .sprung a { text-decoration: none; color: var(--creme); background: var(--nacht2); border-radius: 999px; padding: 6px 14px; font-weight: 700; font-size: 15px; box-shadow: inset 0 0 0 1.5px var(--linie); }
 
