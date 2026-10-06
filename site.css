@@ -10,12 +10,11 @@
   --breit: 1120px;
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
 body { margin: 0; font-family: var(--lauf); font-size: 17px; line-height: 1.55; color: var(--text); background: var(--nacht);
   background-image: radial-gradient(circle at 20% 10%, rgba(244,201,93,.08) 0 2px, transparent 3px), radial-gradient(circle at 70% 30%, rgba(255,255,255,.07) 0 1.5px, transparent 2.5px), radial-gradient(circle at 40% 70%, rgba(255,255,255,.07) 0 1.5px, transparent 2.5px), radial-gradient(circle at 85% 80%, rgba(244,201,93,.08) 0 2px, transparent 3px);
   background-size: 180px 180px, 240px 240px, 200px 200px, 260px 260px; }
 a { color: var(--gold); }
-h1, h2, h3 { font-family: var(--titel); font-weight: 800; letter-spacing: -.01em; line-height: 1.1; margin: 0; font-variation-settings: 'SOFT' 60, 'WONK' 1; }
+h1, h2, h3 { hyphens: auto; overflow-wrap: break-word; font-family: var(--titel); font-weight: 800; letter-spacing: -.01em; line-height: 1.1; margin: 0; font-variation-settings: 'SOFT' 60, 'WONK' 1; }
 h1 { font-size: clamp(38px, 6vw, 68px); }
 h2 { font-size: clamp(28px, 3.6vw, 40px); margin-bottom: 10px; }
 h2 span { display: block; font-family: var(--lauf); font-weight: 600; font-size: 16px; color: var(--leise); letter-spacing: 0; margin-top: 6px; font-variation-settings: normal; }
@@ -27,9 +26,10 @@ section + section { border-top: 1px solid var(--linie); }
 :focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
 
 /* Kopf */
-.kopf { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 0; }
+.kopf { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 18px; padding-bottom: 18px; }   /* nur oben/unten – seitlich kommt von .innen */
 .marke { display: inline-flex; align-items: center; gap: 8px; font-family: var(--titel); font-weight: 800; font-size: 22px; color: var(--creme); text-decoration: none; font-variation-settings: 'SOFT' 60, 'WONK' 1; }
 .marke svg { width: 22px; height: 22px; color: var(--gold); }
+.marke svg.logo { width: 34px; height: 34px; }
 .kopf nav { display: flex; gap: 6px 22px; flex-wrap: wrap; align-items: center; }
 .kopf nav a { color: var(--leise); text-decoration: none; font-weight: 600; }
 .kopf nav a:hover, .kopf nav a[aria-current] { color: var(--creme); }
@@ -43,16 +43,16 @@ section + section { border-top: 1px solid var(--linie); }
 .knopf.klein { padding: 8px 16px; font-size: 15px; }
 
 /* Hero: Text links, das spielbare Handy rechts */
-.hero { padding: 40px 0 72px; }
+.hero { padding: 24px 0 64px; }
 .hero .innen { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(300px, .9fr); gap: 48px; align-items: center; }
 .hero p.lead { font-size: 21px; color: var(--leise); margin: 22px 0 30px; max-width: 34ch; }
 .hero .knoepfe { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
 .hero .hinweis { color: var(--leise); font-size: 14px; margin-top: 14px; }
-.telefon { justify-self: center; position: relative; width: 340px; max-width: 100%; }
+.telefon { justify-self: center; position: relative; width: 300px; max-width: 100%; }
 .telefon .rahmen { position: relative; width: 100%; aspect-ratio: 390 / 844; border-radius: 44px; background: #0a0f1f; padding: 12px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.7), inset 0 0 0 2px rgba(255,255,255,.12); }
-.telefon .rahmen::before { content: ''; position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 110px; height: 26px; background: #0a0f1f; border-radius: 0 0 18px 18px; z-index: 2; }
+.telefon .rahmen::before { content: ''; position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 32%; aspect-ratio: 110 / 26; background: #0a0f1f; border-radius: 0 0 18px 18px; z-index: 2; }
 .telefon iframe { width: 390px; height: 844px; border: 0; border-radius: 34px; background: var(--nacht); transform-origin: top left; }
-.telefon .glas { position: absolute; inset: 12px; border-radius: 34px; overflow: hidden; }
+.telefon .glas { position: absolute; inset: 12px; border-radius: 34px; overflow: hidden; background: #0b1428; }
 .telefon .tipp { text-align: center; color: var(--leise); font-size: 14px; margin-top: 12px; }
 
 /* QR zum Beispiel – vom Laptop aufs Handy */
@@ -70,7 +70,7 @@ section + section { border-top: 1px solid var(--linie); }
 .schritt p { color: var(--leise); font-size: 16px; margin: 0; }
 
 /* Für wen – vier gleichwertige Kacheln */
-.wen { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 28px; }
+.wen { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
 .wen a { display: block; padding: 22px 20px; border-radius: 18px; background: var(--nacht2); color: inherit; text-decoration: none; box-shadow: inset 0 0 0 1.5px var(--linie); }
 .wen a:hover { box-shadow: inset 0 0 0 2px var(--gold); }
 .wen h3 { margin-bottom: 6px; }
@@ -78,7 +78,7 @@ section + section { border-top: 1px solid var(--linie); }
 .wen small { display: block; margin-top: 12px; color: var(--gold); font-weight: 700; }
 
 /* Rätselkarten */
-.karten { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; margin-top: 24px; }
+.karten { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: 14px; margin-top: 24px; }
 .karte { display: grid; grid-template-columns: 48px 1fr; gap: 14px; padding: 18px; border-radius: 18px; background: var(--nacht2); box-shadow: inset 0 0 0 1.5px var(--linie); }
 .karte-icon { width: 48px; height: 48px; border-radius: 14px; background: var(--creme); display: grid; place-items: center; font-size: 26px; }
 .karte h3 { margin-bottom: 4px; }
@@ -107,7 +107,7 @@ section + section { border-top: 1px solid var(--linie); }
 /* Katalogseite */
 .fach { padding: 48px 0; }
 .fach + .fach { border-top: 1px solid var(--linie); }
-.katalog-kopf { padding: 36px 0 8px; }
+.katalog-kopf { padding-top: 36px; padding-bottom: 8px; }   /* nur oben/unten – seitlich kommt von .innen */
 .katalog-kopf p { color: var(--leise); font-size: 19px; max-width: 54ch; }
 .sprung { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
 .sprung a { text-decoration: none; color: var(--creme); background: var(--nacht2); border-radius: 999px; padding: 6px 14px; font-weight: 700; font-size: 15px; box-shadow: inset 0 0 0 1.5px var(--linie); }
@@ -125,9 +125,9 @@ body.demo-offen { overflow: hidden; }
 
 @media (max-width: 900px) {
   .hero .innen { grid-template-columns: 1fr; }
-  .telefon { width: 300px; }
+  .telefon { width: 280px; }
   .schritte, .versprechen { grid-template-columns: 1fr; gap: 20px; }
-  .wen { grid-template-columns: 1fr 1fr; }
+  .wen { grid-template-columns: 1fr; }
   section { padding: 52px 0; }
 }
 @media (max-width: 560px) {
@@ -135,10 +135,10 @@ body.demo-offen { overflow: hidden; }
   .kopf nav { display: none; }
   .hero { padding-top: 16px; }
 }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .knopf { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .knopf { transition: none; } }
 
 /* Vorlagen – eine Karte pro Vorlage, mit Durchspielen und Öffnen */
-.vorlagen { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 18px; margin: 24px 0 64px; }
+.vorlagen { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); gap: 18px; margin: 24px 0 64px; }
 .vorlage { display: flex; flex-direction: column; gap: 10px; padding: 24px 22px; border-radius: 20px; background: var(--nacht2); box-shadow: inset 0 0 0 1.5px var(--linie); }
 .vorlage .fuer { color: var(--gold); font-weight: 700; font-size: 14px; }
 .vorlage h2 { font-size: 26px; margin: 0; }
@@ -150,8 +150,39 @@ body.demo-offen { overflow: hidden; }
 /* Hilfe */
 .hilfe p { color: var(--leise); max-width: 72ch; }
 .hilfe p b { color: var(--creme); }
-.hilfe code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .92em; background: rgba(255,255,255,.08); border-radius: 6px; padding: 1px 6px; color: var(--creme); }
+.hilfe code { overflow-wrap: anywhere;  font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .92em; background: rgba(255,255,255,.08); border-radius: 6px; padding: 1px 6px; color: var(--creme); }
 .weg-liste { margin: 16px 0; padding-left: 0; list-style: none; counter-reset: schritt; max-width: 72ch; }
 .weg-liste li { position: relative; padding-left: 44px; margin-bottom: 12px; color: var(--leise); }
 .weg-liste li b { color: var(--creme); }
 .weg-liste li::before { counter-increment: schritt; content: counter(schritt); position: absolute; left: 0; top: -2px; font-family: var(--titel); font-size: 24px; color: var(--gold); font-variation-settings: 'WONK' 1; }
+
+/* Preisstufen */
+.tag.stufe-gratis { background: rgba(120,200,140,.18); color: #9fe0b4; }
+.tag.stufe-kalender { background: rgba(244,201,93,.16); color: var(--gold); }
+.tag.stufe-alles { background: rgba(214,40,57,.22); color: #ff8a95; }
+.preise { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+.preis { display: flex; flex-direction: column; gap: 4px; padding: 24px 22px; border-radius: 20px; background: var(--nacht2); box-shadow: inset 0 0 0 1.5px var(--linie); }
+.preis.stufe-alles { box-shadow: inset 0 0 0 2px var(--gold); }
+.preis-name { font-weight: 800; color: var(--leise); font-size: 14px; text-transform: uppercase; letter-spacing: .06em; }
+.preis-betrag { font-family: var(--titel); font-size: 40px; font-weight: 800; line-height: 1.1; font-variation-settings: 'SOFT' 60, 'WONK' 1; }
+.preis-satz { font-weight: 700; color: var(--gold); }
+.preis p { color: var(--leise); font-size: 15px; margin: 8px 0 0; }
+.preis small { margin-top: auto; padding-top: 12px; color: var(--leise); }
+.preis-hinweis { color: var(--leise); font-size: 15px; margin-top: 20px; max-width: 72ch; }
+@media (max-width: 900px) { .preise { grid-template-columns: 1fr; } }
+
+/* Karte, die gerade ausprobiert wurde: kurz aufleuchten, damit man sie wiederfindet */
+@keyframes zuletzt { 0% { box-shadow: inset 0 0 0 2px var(--gold), 0 0 0 6px rgba(244,201,93,.25); } 100% { box-shadow: inset 0 0 0 1.5px var(--linie), 0 0 0 0 rgba(244,201,93,0); } }
+.karte.zuletzt, .vorlage.zuletzt { animation: zuletzt 1.6s ease-out; }
+
+a.tag { text-decoration: none; }
+a.tag:hover { box-shadow: inset 0 0 0 1px currentColor; }
+
+/* Beim Zurückspringen zu einer Karte etwas Luft darüber lassen */
+.karte, .vorlage { scroll-margin-top: 16px; }
+
+.preis-betrag small { font-family: var(--lauf); font-size: 15px; font-weight: 700; color: var(--leise); }
+.preis.stufe-gratis .preis-name { visibility: hidden; }
+
+/* Impressum: noch nicht ausgefüllte Angaben */
+mark.platzhalter { background: #ffd23f; color: #14213d; padding: 0 .3em; border-radius: 3px; }
