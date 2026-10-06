@@ -33,14 +33,15 @@ section + section { border-top: 1px solid var(--linie); }
 .kopf nav { display: flex; gap: 6px 22px; flex-wrap: wrap; align-items: center; }
 .kopf nav a { color: var(--leise); text-decoration: none; font-weight: 600; }
 .kopf nav a:hover, .kopf nav a[aria-current] { color: var(--creme); }
+.kopf nav a.knopf { color: var(--creme); font-weight: 800; }
 
 /* Knöpfe */
-.knopf { display: inline-flex; align-items: center; gap: 8px; border: 0; border-radius: 999px; padding: 14px 26px; font: inherit; font-weight: 800; font-size: 17px; cursor: pointer; text-decoration: none;
+.knopf { display: inline-flex; align-items: center; gap: 8px; border: 0; border-radius: 999px; padding: 15px 26px 13px; font: inherit; font-weight: 800; font-size: 17px; cursor: pointer; text-decoration: none;
   background: var(--rot); color: var(--creme); box-shadow: 0 3px 0 var(--rot-dunkel); transition: transform .08s; }
 .knopf:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--rot-dunkel); }
 .knopf.leise { background: transparent; color: var(--creme); box-shadow: inset 0 0 0 2px var(--linie); }
 .knopf.leise:hover { box-shadow: inset 0 0 0 2px rgba(255,255,255,.3); }
-.knopf.klein { padding: 8px 16px; font-size: 15px; }
+.knopf.klein { padding: 8.5px 16px 7.5px; font-size: 15px; }
 
 /* Hero: Text links, das spielbare Handy rechts */
 .hero { padding: 24px 0 64px; }
@@ -85,7 +86,7 @@ section + section { border-top: 1px solid var(--linie); }
 .karte p { color: var(--leise); font-size: 15px; margin: 0 0 10px; }
 .karte-fuss { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
 .tag { font-size: 12.5px; border-radius: 999px; padding: 2px 10px; background: rgba(244,201,93,.14); color: var(--gold); }
-.probe { border: 0; border-radius: 999px; padding: 6px 14px; font: inherit; font-weight: 800; font-size: 14px; background: var(--creme); color: var(--nacht); cursor: pointer; }
+.probe { border: 0; border-radius: 999px; padding: 7px 14px 5px; font: inherit; font-weight: 800; font-size: 14px; background: var(--creme); color: var(--nacht); cursor: pointer; }
 .probe:hover { background: #fff; }
 .mehr { margin-top: 24px; }
 
@@ -145,7 +146,7 @@ body.demo-offen { overflow: hidden; }
 .vorlage p { color: var(--leise); font-size: 15.5px; margin: 0; }
 .vorlage .fakten { display: flex; gap: 8px; flex-wrap: wrap; }
 .vorlage .knoepfe { display: flex; gap: 10px; flex-wrap: wrap; margin-top: auto; padding-top: 10px; }
-.vorlage .knopf { padding: 10px 18px; font-size: 15px; }
+.vorlage .knopf { padding: 11px 18px 9px; font-size: 15px; }
 
 /* Hilfe */
 .hilfe p { color: var(--leise); max-width: 72ch; }
