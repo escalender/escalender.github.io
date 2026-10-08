@@ -81,7 +81,8 @@ section + section { border-top: 1px solid var(--linie); }
 /* Rätselkarten */
 .karten { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: 14px; margin-top: 24px; }
 .karte { display: grid; grid-template-columns: 48px 1fr; gap: 14px; padding: 18px; border-radius: 18px; background: var(--nacht2); box-shadow: inset 0 0 0 1.5px var(--linie); }
-.karte-icon { width: 48px; height: 48px; border-radius: 14px; background: var(--creme); display: grid; place-items: center; font-size: 26px; }
+.karte-icon { width: 48px; height: 48px; border-radius: 14px; background: var(--creme); display: grid; place-items: center; font-size: 26px; color: var(--nacht, #14213d); }
+.karte-icon .ri { width: 32px; height: 32px; }
 .karte h3 { margin-bottom: 4px; }
 .karte p { color: var(--leise); font-size: 15px; margin: 0 0 10px; }
 .karte-fuss { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
@@ -187,3 +188,7 @@ a.tag:hover { box-shadow: inset 0 0 0 1px currentColor; }
 
 /* Impressum: noch nicht ausgefüllte Angaben */
 mark.platzhalter { background: #ffd23f; color: #14213d; padding: 0 .3em; border-radius: 3px; }
+
+.ri{width:1.5em;height:1.5em;flex:none;vertical-align:middle}
+.ri .ak{stroke:var(--ri-akzent,#d9a52c)}.ri .akf{fill:var(--ri-akzent,#d9a52c);stroke:none}
+.ri .f{fill:currentColor;stroke:none}.ri .rot{stroke:#d62839;fill:rgba(214,40,57,.22)}
