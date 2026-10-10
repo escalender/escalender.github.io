@@ -87,7 +87,7 @@
 
   // Regel 2: welcher Abschnitt ist gerade zuoberst sichtbar? IntersectionObserver sieht das auch durch ein umgebendes Fenster hindurch.
   const STELLE = 'escalender:stelle:' + PFAD;
-  const MARKEN = 'header, section, h1, h2, .katalog-kopf p, .karte, .vorlage, .schritt, .wen > a, .preis, .fragen details, .hilfe p, .weg-liste li, footer';
+  const MARKEN = 'header:not(.kopf), section, h1, h2, .katalog-kopf p, .karte, .vorlage, .schritt, .wen > a, .preis, .fragen details, .hilfe p, .weg-liste li, footer';
   const marken = [...document.querySelectorAll(MARKEN)];
   const sicht = new Map();
   if ('IntersectionObserver' in window) {
@@ -152,5 +152,43 @@
       return;
     }
     if (navigationsArt() === 'navigate' && !location.hash) { try { document.documentElement.scrollIntoView({ block: 'start' }); } catch (e) { window.scrollTo(0, 0); } }   // Regel 1
+  });
+
+  // ── Kopfzeile: schlanker beim Scrollen, auf dem Handy weg beim Runter- und zurück beim Hochscrollen; Menü-Knopf ──
+  document.addEventListener('DOMContentLoaded', () => {
+    const kopf = document.querySelector('.kopf');
+    if (!kopf) return;
+    const nav = kopf.querySelector('nav');
+    const bauen = nav && nav.querySelector('a.knopf');
+    if (nav) {
+      if (!nav.id) nav.id = 'hauptmenue';
+      // Handy: «Kalender bauen» bleibt sichtbar, der Rest kommt ins Menü
+      if (bauen) { const cta = bauen.cloneNode(true); cta.classList.add('kopf-cta'); kopf.append(cta); }
+      const knopf = document.createElement('button');
+      knopf.type = 'button'; knopf.className = 'menu-knopf'; knopf.setAttribute('aria-label', 'Menü'); knopf.setAttribute('aria-expanded', 'false'); knopf.setAttribute('aria-controls', nav.id);
+      const linien = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>';
+      const kreuz = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+      knopf.innerHTML = linien;
+      const setze = (auf) => { kopf.classList.toggle('offen', auf); knopf.setAttribute('aria-expanded', String(auf)); knopf.innerHTML = auf ? kreuz : linien; if (auf) kopf.classList.remove('weg'); };
+      knopf.addEventListener('click', (e) => { e.stopPropagation(); setze(!kopf.classList.contains('offen')); });
+      nav.addEventListener('click', (e) => { if (e.target.closest('a')) setze(false); });
+      document.addEventListener('click', (e) => { if (!kopf.contains(e.target)) setze(false); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setze(false); });
+      kopf.append(knopf);
+    }
+    const handy = window.matchMedia('(max-width: 560px)');
+    let letzt = window.scrollY, geplant = false;
+    const pruefe = () => {
+      geplant = false;
+      const y = Math.max(0, window.scrollY);
+      kopf.classList.toggle('klein', y > 8);
+      if (handy.matches && !kopf.classList.contains('offen')) {
+        if (y > letzt + 4 && y > 90) kopf.classList.add('weg');
+        else if (y < letzt - 4 || y < 90) kopf.classList.remove('weg');
+      } else kopf.classList.remove('weg');
+      letzt = y;
+    };
+    window.addEventListener('scroll', () => { if (!geplant) { geplant = true; requestAnimationFrame(pruefe); } }, { passive: true });
+    pruefe();
   });
 })();
