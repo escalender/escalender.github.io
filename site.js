@@ -191,4 +191,28 @@
     window.addEventListener('scroll', () => { if (!geplant) { geplant = true; requestAnimationFrame(pruefe); } }, { passive: true });
     pruefe();
   });
+
+  // ── Preis-Etiketten: Kärtchen mit Stufe, Preis und Erklärung, Link «Alle Preise» ──
+  let kaertchen = null;
+  const schliesseKaertchen = () => { if (kaertchen) { kaertchen.remove(); kaertchen = null; } document.querySelectorAll('.stufe-tipp[aria-expanded="true"]').forEach((b) => b.setAttribute('aria-expanded', 'false')); };
+  document.addEventListener('click', (e) => {
+    const t = e.target.closest('.stufe-tipp');
+    if (!t) { if (kaertchen && !kaertchen.contains(e.target)) schliesseKaertchen(); return; }
+    e.preventDefault();
+    const offen = t.getAttribute('aria-expanded') === 'true';
+    schliesseKaertchen();
+    if (offen) return;
+    const k = document.createElement('div');
+    k.className = 'stufen-kaertchen stufe-' + t.dataset.stufe; k.setAttribute('role', 'dialog'); k.setAttribute('aria-label', t.dataset.name);
+    const esc = (x) => String(x || '').replace(/&/g, '&amp;').replace(/</g, '&lt;');
+    k.innerHTML = `<div class="sk-kopf"><b>${esc(t.dataset.name)}</b><span>${esc(t.dataset.preis)}</span></div>${t.dataset.betrag ? `<p class="sk-betrag">Diese Vorlage: ${esc(t.dataset.betrag)}</p>` : ''}<p>${esc(t.dataset.text)}</p><a href="${BASIS}#preise">Alle Preise →</a>`;
+    document.body.append(k);
+    const r = t.getBoundingClientRect(), b = k.getBoundingClientRect();
+    const links = Math.max(12, Math.min(window.innerWidth - b.width - 12, r.left + r.width / 2 - b.width / 2));
+    const oben = r.bottom + 8 + b.height > window.innerHeight - 8 && r.top - 8 - b.height > 8 ? r.top - 8 - b.height : r.bottom + 8;
+    k.style.left = links + window.scrollX + 'px'; k.style.top = oben + window.scrollY + 'px';
+    t.setAttribute('aria-expanded', 'true'); kaertchen = k;
+  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') schliesseKaertchen(); });
+  window.addEventListener('resize', schliesseKaertchen);
 })();
