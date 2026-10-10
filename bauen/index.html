@@ -679,7 +679,7 @@ button { font: inherit; cursor: pointer; }
 .figur-sagt .blase { border-top-left-radius: 6px; }
 .figur-sagt .blase::before {
   content: ''; position: absolute; left: -10px; top: 18px;
-  border: 8px solid transparent; border-right: 10px solid var(--karte); border-left: 0;
+  border: 8px solid transparent; border-right: 11px solid var(--karte); border-left: 0;   /* 1px \xDCberlappung: sonst Haarspalt auf hochaufl\xF6senden Bildschirmen */
 }
 .karte { background: var(--nacht2); border-radius: var(--radius); padding: 16px; margin: 14px 0; }
 .karte.hell { background: var(--karte); color: var(--karte-text); }
